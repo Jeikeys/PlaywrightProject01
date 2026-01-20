@@ -18,7 +18,7 @@ test("Show and Hide Details", async ({ page }) => {
 
   const text = await details.textContent();
   await expect(text?.trim().length ?? 0).toBeGreaterThan(0);
-  await expect(details).toContainText(/win32/i);
+  await expect(details).toContainText(/platform/i);
 
   await expect(hideButton).toBeVisible();
   await expect(hideButton).toHaveText("Hide Browser Information");
