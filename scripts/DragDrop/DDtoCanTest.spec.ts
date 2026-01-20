@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-import { DragDropCirclesPage } from "./pom/dragdroppage";
+import { DragDropCirclesPage } from "./pom/dragdropPage";
 
 test("Circles is dropped into the bin in any order", async ({ page }) => {
   const circlesPage = new DragDropCirclesPage(page);
