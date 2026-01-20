@@ -80,7 +80,7 @@ function makeid(length: number) {
   return result;
 }
 
-test.only("Username Character Limit", async ({ page }) => {
+test("Username Character Limit", async ({ page }) => {
   const newregister = new registerpage(page);
   const confirmtext = page.locator("#flash");
 
