@@ -80,11 +80,26 @@ function makeid(length: number) {
   return result;
 }
 
-test("Username Character Limit", async ({ page }) => {
-  const newregister = new registerpage(page);
-  const confirmtext = page.locator("#flash");
+test.describe("Username Character Limit", () => {
+  test("Character input is too short", async ({ page }) => {
+    const newregister = new registerpage(page);
+    const confirmtext = page.locator("#flash");
 
-  await newregister.register(makeid(50), "newpassword", "newpassword");
-  await expect.soft(confirmtext).toHaveText("Username must be at least 3 characters long.");
-  await expect.soft(confirmtext).toHaveText("Invalid username. Usernames can only contain lowercase letters, numbers, and single hyphens, must be between 3 and 39 characters, and cannot start or end with a hyphen.");
+    await newregister.register(makeid(2), "newpassword", "newpassword");
+    await expect
+      .soft(confirmtext)
+      .toHaveText("Username must be at least 3 characters long.");
   });
+
+  test("Character input is too long", async ({ page }) => {
+    const newregister = new registerpage(page);
+    const confirmtext = page.locator("#flash");
+
+    await newregister.register(makeid(50), "newpassword", "newpassword");
+    await expect
+      .soft(confirmtext)
+      .toHaveText(
+        "Invalid username. Usernames can only contain lowercase letters, numbers, and single hyphens, must be between 3 and 39 characters, and cannot start or end with a hyphen."
+      );
+  });
+});
