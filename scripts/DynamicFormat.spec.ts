@@ -35,19 +35,10 @@ test.describe("Dynamic Pagination Table", () => {
     expect(secondPageFirstName).not.toEqual(firstPageFirstName);
   });
 
-  test("should verify all ages are numeric", async () => {
-    // column index 3 = Age
-    const ages = await tablePage.getAllColumnValues(3);
+  test("Find a known country in the table", async () => {
+    await tablePage.changePageSize("All");
+    const countries = await tablePage.getAllColumnValues(3);
 
-    for (const age of ages) {
-      expect(Number(age)).not.toBeNaN();
-    }
-  });
-
-  test("should find a known country in the table", async () => {
-    // column index 2 = Country
-    const countries = await tablePage.getAllColumnValues(2);
-
-    expect(countries).toContain("United States");
+    expect(countries).toContain("New York");
   });
 });

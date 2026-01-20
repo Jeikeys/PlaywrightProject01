@@ -84,7 +84,7 @@ test("Username Character Limit", async ({ page }) => {
   const newregister = new registerpage(page);
   const confirmtext = page.locator("#flash");
 
-  await newregister.register(makeid(39), "newpassword", "newpassword");
+  await newregister.register(makeid(50), "newpassword", "newpassword");
   await expect.soft(confirmtext).toHaveText("Username must be at least 3 characters long.");
   await expect.soft(confirmtext).toHaveText("Invalid username. Usernames can only contain lowercase letters, numbers, and single hyphens, must be between 3 and 39 characters, and cannot start or end with a hyphen.");
   });
