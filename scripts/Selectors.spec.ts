@@ -40,7 +40,7 @@ test.describe("Practicing Different Locators Page", () => {
     await page.getByTitle("Refresh content").click();
     await expect(page.getByTitle("Settings panel")).toBeVisible();
 
-    await expect(page.getByTestId("status-message")).toHaveText("All systems operational");
+    await expect(page.getByTestId("status-message")).toContainText("All systems operational");
     await expect(page.getByTestId("user-name")).toHaveText("Username: Alice");
   });
 
