@@ -5,3 +5,6 @@ TRYING TO FAMILIARIZE WITH THE TOOL WHILE DOCUMENTING MANY KINDS OF METHODS/LOGI
 USING PLAYWRIGHT WITH TYPESCRIPT FOR THIS WEBSITE 'https://practice.expandtesting.com/'
 
 THANKS FOR READING!
+
+
+CI Manual Workflow is now working and have success on all Test scripts
