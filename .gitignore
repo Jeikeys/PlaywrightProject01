@@ -7,5 +7,5 @@ node_modules/
 /playwright/.cache/
 /playwright/.auth/
 #*** START EDIT ***#
-.env
+# .env
 #*** STOP EDIT ***#
