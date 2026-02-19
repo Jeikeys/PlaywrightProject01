@@ -1,12 +1,12 @@
 import { test, expect } from "./fixtures/auth.fixture";
 import { customAlphabet } from "nanoid";
+import { API_URL } from '../../config/env';
 
-const BASE_URL = "https://practice.expandtesting.com/notes/api";
 const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz0123456789", 4);
 
 test.describe("Authentication API - Negative Tests", () => {
   test("Register with missing password", async ({ request, name, email }) => {
-    const response = await request.post(`${BASE_URL}/users/register`, {
+    const response = await request.post(`${API_URL}/users/register`, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -18,7 +18,7 @@ test.describe("Authentication API - Negative Tests", () => {
   });
 
   test("Login with wrong password", async ({ request, email }) => {
-    const response = await request.post(`${BASE_URL}/users/login`, {
+    const response = await request.post(`${API_URL}/users/login`, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -31,7 +31,7 @@ test.describe("Authentication API - Negative Tests", () => {
 
   test("Login with non-existent user", async ({ request }) => {
     const fakeEmail = `nouser_${Date.now()}_${nanoid()}@example.com`;
-    const response = await request.post(`${BASE_URL}/users/login`, {
+    const response = await request.post(`${API_URL}/users/login`, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -43,7 +43,7 @@ test.describe("Authentication API - Negative Tests", () => {
   });
 
   test("Access profile without token", async ({ request }) => {
-    const response = await request.get(`${BASE_URL}/users/profile`, {
+    const response = await request.get(`${API_URL}/users/profile`, {
       headers: { Accept: "application/json" },
     });
 
@@ -51,7 +51,7 @@ test.describe("Authentication API - Negative Tests", () => {
   });
 
   test("Logout with invalid token", async ({ request }) => {
-    const response = await request.delete(`${BASE_URL}/users/logout`, {
+    const response = await request.delete(`${API_URL}/users/logout`, {
       headers: { Accept: "application/json", "X-AUTH-TOKEN": "invalid_token" },
     });
 
@@ -65,7 +65,7 @@ test.describe("Authentication API - Negative Tests", () => {
     password,
     registeredUser,
   }) => {
-    const response = await request.post(`${BASE_URL}/users/register`, {
+    const response = await request.post(`${API_URL}/users/register`, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",

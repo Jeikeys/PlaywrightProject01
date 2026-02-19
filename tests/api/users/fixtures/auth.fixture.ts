@@ -1,8 +1,8 @@
 import { test as base, expect } from "@playwright/test";
 import { faker } from "@faker-js/faker";
 import { customAlphabet } from "nanoid";
+import { API_URL } from '../../../config/env';
 
-const BASE_URL = "https://practice.expandtesting.com/notes/api";
 const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz0123456789", 6);
 
 export const test = base.extend<{
@@ -40,7 +40,7 @@ export const test = base.extend<{
 
   // Register user to ensure existing account
   registeredUser: async ({ request, name, email, password }, use) => {
-    const res = await request.post(`${BASE_URL}/users/register`, {
+    const res = await request.post(`${API_URL}/users/register`, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -54,7 +54,7 @@ export const test = base.extend<{
 
   // Login using registeredUser
   authToken: async ({ request, email, password, registeredUser }, use) => {
-    const loginRes = await request.post(`${BASE_URL}/users/login`, {
+    const loginRes = await request.post(`${API_URL}/users/login`, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
